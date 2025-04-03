@@ -1,0 +1,31 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+tasks.withType(JavaExec).configureEach {
+    standardInput = System.in
+}
+
+dependencies {
+    // Add dependencies here if needed
+}
+
+application {
+    mainClass = 'main.java.com.hospital.PatientAdmission'
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'main.java.com.hospital.PatientAdmission'
+    }
+}
