@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies
+      - mvn install -DskipTests
+  build:
+    commands:
+      - echo Building the project
+      - mvn package
+  post_build:
+    commands:
+      - echo Running unit tests
+      - mvn test
+
+artifacts:
+  files:
+    - target/*.jar
+  discard-paths: yes
