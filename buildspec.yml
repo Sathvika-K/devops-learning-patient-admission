@@ -2,18 +2,9 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      java: corretto17
     commands:
-      - echo Installing Maven dependencies...
+      - echo Installing dependencies
       - mvn install -DskipTests
-  pre_build:
-    commands:
-      - echo Fetching secrets...
-      - |
-        SECRET_JSON=$(aws secretsmanager get-secret-value --secret-id MyAppSecrets --query SecretString --output text)
-        export DB_USER=$(echo $SECRET_JSON | jq -r .DB_USER)
-        export DB_PASS=$(echo $SECRET_JSON | jq -r .DB_PASS)
   build:
     commands:
       - echo Building the project...
